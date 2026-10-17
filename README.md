@@ -56,7 +56,7 @@ pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
 
-Open `http://127.0.0.1:8000`. Click **Load demo data** to explore the interface. API docs: `http://127.0.0.1:8000/docs`. Health: `http://127.0.0.1:8000/health`.
+Open `http://127.0.0.1:8000`. API docs: `http://127.0.0.1:8000/docs`. Health: `http://127.0.0.1:8000/health`.
 
 SQLite is used by default and `flowforge.db` is created in the project folder. Add `OPENAI_API_KEY` to your environment to enable AI suggestions. Never commit API keys.
 
