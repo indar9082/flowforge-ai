@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"><meta name="viewport"
+            content="width=device-width,initial-scale=1">
+        <meta name="description"
+            content="FlowForge AI: CSV data pipeline, quality profiling, transformation and AI suggestions.">
+        <title>FlowForge AI — Data Pipeline Studio</title>
+        <style>
+:root{--bg:#090e19;--panel:#101a2a;--panel2:#152239;--line:#24334a;--text:#edf3ff;--muted:#92a2bd;--mint:#69e4be;--violet:#a895ff;--red:#ff858e;--amber:#ffcb78}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 5% 0%,#182b42,transparent 35%),var(--bg);color:var(--text);font:14px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}button,input,select{font:inherit}button{cursor:pointer}.app{max-width:1400px;margin:auto;padding:0 26px}.topbar{height:76px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{display:flex;align-items:center;gap:12px;font-size:18px;font-weight:800;letter-spacing:-.5px}.logo{height:36px;width:36px;display:grid;place-items:center;border-radius:11px;background:linear-gradient(145deg,var(--mint),#6ca5ff);color:#07131c;font-size:20px}.brand span{color:var(--mint)}.topright{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:12px}.status-dot{width:7px;height:7px;border-radius:50%;background:var(--mint);display:inline-block}.pill{border:1px solid var(--line);border-radius:99px;padding:6px 10px}.intro{display:flex;justify-content:space-between;align-items:end;padding:32px 0 22px;gap:20px}.eyebrow{color:var(--mint);font-weight:800;font-size:10px;letter-spacing:2px;text-transform:uppercase}.intro h1{font-size:clamp(28px,4vw,42px);letter-spacing:-1.8px;line-height:1.1;margin:8px 0}.intro p{margin:0;color:var(--muted);max-width:660px}.btn{border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:10px;padding:10px 14px;font-weight:700}.btn.primary{background:var(--mint);color:#06151a;border-color:var(--mint)}.btn:disabled{opacity:.5;cursor:not-allowed}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin:12px 0 20px}.metric,.panel{border:1px solid var(--line);border-radius:15px;background:linear-gradient(150deg,#111c2e,#0e1726)}.metric{padding:17px}.metric-label{color:var(--muted);font-size:12px}.metric-value{font-size:27px;font-weight:800;letter-spacing:-1px;margin-top:4px}.metric-note{color:var(--muted);font-size:11px}.layout{display:grid;grid-template-columns:minmax(270px,.8fr) minmax(0,1.8fr);gap:15px;align-items:start}.panel{padding:20px;margin-bottom:15px;min-width:0}.panel-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}.panel h2{font-size:15px;margin:0;letter-spacing:-.3px}.sub{font-size:12px;color:var(--muted);margin:5px 0 0}.step{font-size:10px;color:var(--mint);font-weight:800;letter-spacing:1px}.upload{border:1px dashed #3c526f;border-radius:12px;padding:20px 12px;text-align:center;background:#0b1422;transition:border .2s}.upload.drag{border-color:var(--mint)}.upload-icon{font-size:26px}.upload strong{display:block;margin:7px 0 2px}.upload p{color:var(--muted);font-size:12px;margin:0 0 12px}.filename{font-size:12px;color:var(--mint);overflow-wrap:anywhere;margin-top:9px}.field{margin:15px 0}.field label{display:block;font-size:12px;font-weight:700;margin-bottom:7px}.field select,.field input{width:100%;background:#0b1422;color:var(--text);border:1px solid var(--line);border-radius:9px;padding:10px;outline:none}.field select:focus,.field input:focus{border-color:var(--mint)}.checks{display:grid;gap:10px}.checks label{display:flex;gap:9px;align-items:flex-start;color:#cbd6e8;font-size:12px}.checks input{accent-color:var(--mint);margin-top:3px}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}.actions .btn{flex:1}.hint{font-size:11px;color:var(--muted);margin-top:12px}.tabs{display:flex;gap:7px;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:15px;flex-wrap:wrap}.tab{border:1px solid transparent;background:transparent;color:var(--muted);padding:7px 11px;border-radius:8px;font-size:12px}.tab.active{background:#18302f;color:var(--mint);border-color:#2b514b}.empty{padding:36px 14px;text-align:center;color:var(--muted)}.empty .big{font-size:34px;margin-bottom:8px}.empty strong{display:block;color:var(--text);margin-bottom:4px}.results-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:13px;flex-wrap:wrap}.badges{display:flex;gap:7px;flex-wrap:wrap}.badge{border:1px solid var(--line);padding:5px 8px;border-radius:7px;font-size:11px;color:#cad6e8}.badge.good{color:var(--mint);border-color:#2c544d}.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:10px;max-height:390px}table{border-collapse:collapse;width:100%;font-size:12px;white-space:nowrap}th,td{text-align:left;padding:10px 12px;border-bottom:1px solid #1f2b40}th{position:sticky;top:0;background:#17243a;color:#cbd6e8;font-weight:700}td{color:#aebed5}tr:last-child td{border-bottom:0}.null{color:var(--amber);font-style:italic}.quality-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.qbox{background:#0b1422;border:1px solid var(--line);border-radius:10px;padding:13px}.qbox strong{font-size:20px;display:block}.qbox small{color:var(--muted)}.quality-list{margin-top:13px}.qrow{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #202d42;gap:12px;font-size:12px}.qrow:last-child{border:0}.qrow span:last-child{color:var(--amber)}.runrow{display:grid;grid-template-columns:38px 1fr auto;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid #202d42}.runrow:last-child{border:0}.runicon{width:34px;height:34px;border-radius:10px;background:#18302f;display:grid;place-items:center;color:var(--mint)}.runname{font-weight:700;overflow-wrap:anywhere}.runmeta{font-size:11px;color:var(--muted)}.success{color:var(--mint);font-size:11px}.notice{padding:11px 13px;border-radius:9px;font-size:12px;margin:12px 0;display:none;white-space:pre-wrap}.notice.error{display:block;color:#ffc0c4;background:#351c28;border:1px solid #63303b}.notice.ok{display:block;color:#b7ffe8;background:#14322e;border:1px solid #2c5a50}.aiout{white-space:pre-wrap;color:#c8d6e9;font-size:12px;background:#0b1422;border:1px solid var(--line);border-radius:10px;padding:13px;margin-top:12px;display:none}.footer{padding:22px 0 30px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:11px}.footer a{color:var(--mint);text-decoration:none}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(2,1fr)}.intro{align-items:start;flex-direction:column}.app{padding:0 15px}}@media(max-width:480px){.metrics{gap:8px}.metric{padding:12px}.metric-value{font-size:23px}.topbar{height:65px}.topright .pill{display:none}.panel{padding:15px}.quality-grid{grid-template-columns:repeat(2,1fr)}}
+</style>
+    </head>
+    <body><div class="app">
+            <header class="topbar"><div class="brand"><div
+                        class="logo">⌁</div><div>FlowForge<span>
+                            AI</span></div></div><div class="topright"><span><i
+                            class="status-dot"></i> API ready</span><span
+                        class="pill">MVP · v1.0</span></div></header>
+            <section class="intro"><div><div class="eyebrow">Data engineering
+                        workspace</div><h1>Build reliable data
+                        pipelines.</h1><p>Ingest raw data, apply
+                        transformations, inspect quality, and track every run
+                        from one workspace.</p></div></section>
+            <section class="metrics">
+                <div class="metric"><div class="metric-label">Rows
+                        processed</div><div class="metric-value"
+                        id="mRows">—</div><div class="metric-note">Latest
+                        pipeline output</div></div>
+                <div class="metric"><div class="metric-label">Quality
+                        issues</div><div class="metric-value"
+                        id="mIssues">—</div><div class="metric-note">Null cells
+                        + duplicates</div></div>
+                <div class="metric"><div class="metric-label">Pipeline
+                        duration</div><div class="metric-value"
+                        id="mDuration">—</div><div
+                        class="metric-note">Processing time</div></div>
+                <div class="metric"><div class="metric-label">Successful
+                        runs</div><div class="metric-value"
+                        id="mRuns">0</div><div class="metric-note">Saved
+                        execution history</div></div>
+            </section>
+            <div class="layout">
+                <aside>
+                    <section class="panel"><div
+                            class="panel-head"><div><h2><span class="step">01 /
+                                        INGEST</span><br>Source data</h2><p
+                                    class="sub">Choose a CSV file to profile or
+                                    transform.</p></div></div>
+                        <div class="upload" id="dropZone"><div
+                                class="upload-icon">⇧</div><strong>Drop your CSV
+                                here</strong><p>or browse from your device · max
+                                15 MB</p><input type="file" id="fileInput"
+                                accept=".csv,text/csv" hidden><button
+                                class="btn" id="browseBtn">Browse
+                                files</button><div class="filename"
+                                id="filename">No file selected</div></div>
+                        <div class="field"><label for="goal">What do you want to
+                                achieve?</label><input id="goal"
+                                value="Clean this dataset for analytics and identify quality issues."
+                                maxlength="1000"></div>
+                        <div class="actions"><button class="btn"
+                                id="profileBtn">Profile data</button><button
+                                class="btn primary" id="aiBtn">✦ AI
+                                suggest</button></div>
+                        <div class="aiout" id="aiOut"></div><div class="notice"
+                            id="sourceNotice"></div></section>
+                    <section class="panel"><div
+                            class="panel-head"><div><h2><span class="step">02 /
+                                        TRANSFORM</span><br>Pipeline
+                                    configuration</h2><p class="sub">Select
+                                    deterministic operations to
+                                    run.</p></div></div>
+                        <div class="checks">
+                            <label><input type="checkbox"
+                                    value="normalize_columns" checked> Normalize
+                                column names</label>
+                            <label><input type="checkbox" value="trim_strings"
+                                    checked> Trim text whitespace</label>
+                            <label><input type="checkbox"
+                                    value="convert_numeric"> Convert
+                                numeric-like fields</label>
+                            <label><input type="checkbox"
+                                    value="drop_empty_columns"> Drop fully empty
+                                columns</label>
+                        </div>
+                        <div class="field"><label for="missing">Missing-value
+                                strategy</label><select id="missing"><option
+                                    value="keep">Keep missing
+                                    values</option><option
+                                    value="fill_empty">Fill missing text with
+                                    empty strings</option><option
+                                    value="drop_rows">Drop rows containing
+                                    missing values</option></select></div>
+                        <div class="checks"><label><input type="checkbox"
+                                    id="dedupe" checked> Remove duplicate
+                                rows</label></div>
+                        <div class="field"><label for="filterColumn">Optional
+                                filter column</label><input id="filterColumn"
+                                placeholder="e.g. region"></div>
+                        <div class="field"><label for="filterContains">Keep rows
+                                where column contains</label><input
+                                id="filterContains"
+                                placeholder="e.g. west"></div>
+                        <button class="btn primary"
+                            style="width:100%;margin-top:4px" id="runBtn">▶ Run
+                            pipeline</button><div class="hint">Transformations
+                            run server-side. Output is previewed before
+                            download.</div><div class="notice"
+                            id="runNotice"></div></section>
+                </aside>
+                <main>
+                    <section class="panel"><div
+                            class="panel-head"><div><h2><span class="step">03 /
+                                        OBSERVE</span><br>Pipeline output</h2><p
+                                    class="sub">Preview transformed records and
+                                    quality signals.</p></div><button
+                                class="btn" id="downloadBtn" disabled>↓ Export
+                                CSV</button></div>
+                        <div class="tabs"><button class="tab active"
+                                data-tab="preview">Data preview</button><button
+                                class="tab" data-tab="quality">Data
+                                quality</button><button class="tab"
+                                data-tab="history">Run history</button></div>
+                        <div id="previewTab"><div class="empty"
+                                id="previewEmpty"><div
+                                    class="big">▦</div><strong>Nothing processed
+                                    yet</strong>Upload a CSV or load the demo
+                                dataset to begin.</div><div id="previewContent"
+                                hidden></div></div>
+                        <div id="qualityTab" hidden><div class="empty"
+                                id="qualityEmpty"><div
+                                    class="big">◈</div><strong>No quality report
+                                    yet</strong>Profile a dataset to see nulls,
+                                duplicates, and column types.</div><div
+                                id="qualityContent" hidden></div></div>
+                        <div id="historyTab" hidden><div class="empty"
+                                id="historyEmpty"><div
+                                    class="big">◷</div><strong>No runs recorded
+                                    yet</strong>Successful pipeline runs will
+                                appear here.</div><div id="historyContent"
+                                hidden></div></div>
+                    </section>
+                    <section class="panel"><div
+                            class="panel-head"><div><h2>Pipeline run
+                                    details</h2><p class="sub">Applied
+                                    operations and execution
+                                    summary.</p></div><span class="badge"
+                                id="runBadge">Waiting for run</span></div><div
+                            id="details" class="empty" style="padding:18px">Run
+                            a pipeline to inspect execution
+                            details.</div></section>
+                </main></div>
+            <footer class="footer"><span>FlowForge AI · Data Pipeline
+                    Studio</span><span>Built with FastAPI, Pandas & SQLAlchemy ·
+                    <a href="/docs" target="_blank" rel="noopener">API docs
+                        ↗</a> · <a href="/health" target="_blank"
+                        rel="noopener">Health check</a></span></footer>
+        </div>
+        <script>
+const $=id=>document.getElementById(id);
+let currentFile=null,lastCSV="",lastQuality=null,latestResult=null,demoMode=false;
+const demo={filename:"sales_demo.csv",columns:["order_id","customer","region","amount","order_date"],rows:[{order_id:101,customer:"Asha",region:"West",amount:1299.5,order_date:"2026-09-01"},{order_id:102,customer:"Rohan",region:"South",amount:799,order_date:"2026-09-02"},{order_id:103,customer:"Asha",region:"West",amount:1299.5,order_date:"2026-09-01"},{order_id:104,customer:"Meera",region:null,amount:450,order_date:"2026-09-03"},{order_id:105,customer:"Dev",region:"North",amount:null,order_date:"2026-09-04"}]};
+function notice(id,msg,type="error"){const el=$(id);el.textContent=msg;el.className="notice "+type}
+function clearNotice(id){$(id).className="notice";$(id).textContent=""}
+function setTab(name){document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("active",b.dataset.tab===name));["preview","quality","history"].forEach(n=>$(n+"Tab").hidden=n!==name)}
+document.querySelectorAll(".tab").forEach(b=>b.addEventListener("click",()=>setTab(b.dataset.tab)));
+function fmt(v){if(v===null||v===undefined||v==="")return '<span class="null">null</span>';return esc(String(v))}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function tableHTML(rows,columns){if(!rows||!rows.length)return '<div class="empty">No rows match this pipeline configuration.</div>';return '<div class="tablewrap"><table><thead><tr>'+columns.map(c=>'<th>'+esc(c)+'</th>').join("")+'</tr></thead><tbody>'+rows.map(r=>'<tr>'+columns.map(c=>'<td>'+fmt(r[c])+'</td>').join("")+'</tr>').join("")+'</tbody></table></div><div class="hint">Showing '+rows.length+' preview rows. Export to download the complete output.</div>'}
+function showPreview(rows,columns){$("previewEmpty").hidden=true;$("previewContent").hidden=false;$("previewContent").innerHTML=tableHTML(rows,columns)}
+function showQuality(q){lastQuality=q;$("qualityEmpty").hidden=true;$("qualityContent").hidden=false;const issues=(q.null_cells||0)+(q.duplicate_rows||0);$("qualityContent").innerHTML='<div class="quality-grid"><div class="qbox"><strong>'+q.row_count+'</strong><small>Rows</small></div><div class="qbox"><strong>'+q.column_count+'</strong><small>Columns</small></div><div class="qbox"><strong>'+q.null_cells+'</strong><small>Null cells</small></div><div class="qbox"><strong>'+q.duplicate_rows+'</strong><small>Duplicate rows</small></div><div class="qbox"><strong>'+q.memory_kb+'</strong><small>Memory KB</small></div><div class="qbox"><strong>'+issues+'</strong><small>Issue signals*</small></div></div><div class="quality-list">'+Object.entries(q.nulls_by_column||{}).map(([c,n])=>'<div class="qrow"><span>'+esc(c)+' <small class="muted">('+esc(q.dtypes?.[c]||"unknown")+')</small></span><span>'+n+' null</span></div>').join("")+'</div><p class="hint">*Issue signals sum null cells and duplicate rows; this is a quick profile, not a business-rule quality score.</p>'}
+async function refreshHistory(){try{const r=await fetch("/api/runs");if(!r.ok)throw Error();const runs=await r.json();$("mRuns").textContent=runs.length;$("historyEmpty").hidden=!!runs.length;$("historyContent").hidden=!runs.length;$("historyContent").innerHTML=runs.map(r=>'<div class="runrow"><div class="runicon">✓</div><div><div class="runname">'+esc(r.filename)+'</div><div class="runmeta">#'+r.id+' · '+new Date(r.created_at).toLocaleString()+' · '+r.rows_in+' → '+r.rows_out+' rows</div></div><div class="success">'+r.duration_ms+' ms</div></div>').join("")}catch(e){$("mRuns").textContent="—"}}
+function makeCSV(rows,columns){const cell=v=>{if(v===null||v===undefined)return "";let s=String(v);return /[",\r\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s};return [columns.map(cell).join(","),...rows.map(r=>columns.map(c=>cell(r[c])).join(","))].join("\r\n")}
+function setFile(file){if(!file)return;if(!file.name.toLowerCase().endsWith(".csv")){notice("sourceNotice","Please choose a .csv file.");return}if(file.size>15*1024*1024){notice("sourceNotice","File is larger than 15 MB.");return}currentFile=file;demoMode=false;$("filename").textContent=file.name+" · "+(file.size/1024).toFixed(1)+" KB";clearNotice("sourceNotice");$("aiOut").style.display="none"}
+$("browseBtn").onclick=()=>$("fileInput").click();
+$("fileInput").addEventListener("change",e=>setFile(e.target.files[0]));
+$("dropZone").addEventListener("dragover",e=>{e.preventDefault();$("dropZone").classList.add("drag")});
+$("dropZone").addEventListener("dragleave",()=>$("dropZone").classList.remove("drag"));
+$("dropZone").addEventListener("drop",e=>{e.preventDefault();$("dropZone").classList.remove("drag");setFile(e.dataTransfer.files[0])});
+async function loadDemo(){try{const r=await fetch("/api/demo");if(!r.ok)throw Error();const d=await r.json();demoMode=true;currentFile=null;lastCSV=makeCSV(d.rows,d.columns);$("filename").textContent="sales_demo.csv · built-in demo";showPreview(d.rows,d.columns);showQuality(d.quality);$("mRows").textContent=d.rows.length;$("mIssues").textContent=d.quality.null_cells+d.quality.duplicate_rows;$("mDuration").textContent="Demo";latestResult=null;$("downloadBtn").disabled=false;clearNotice("sourceNotice");notice("sourceNotice","Demo data loaded. Select transformation settings and click Run pipeline to process it server-side.","ok");setTab("preview");return}catch(e){notice("sourceNotice","Could not load demo data. Is the server running?")}}
+$("demoBtn").onclick=loadDemo;
+function getOperations(){return [...document.querySelectorAll('.checks input[type="checkbox"][value]')].filter(c=>c.checked).map(c=>c.value)}
+function createUploadForm(){const fd=new FormData();if(demoMode){const blob=new Blob([lastCSV],{type:"text/csv"});fd.append("file",blob,"sales_demo.csv")}else if(currentFile){fd.append("file",currentFile)}else{throw Error("Choose a CSV file or load the demo dataset first.")}return fd}
+$("profileBtn").onclick=async()=>{try{clearNotice("sourceNotice");const fd=createUploadForm();const r=await fetch("/api/profile",{method:"POST",body:fd});const data=await r.json();if(!r.ok)throw Error(data.detail||"Profile failed.");showPreview(data.preview,data.columns);showQuality(data.quality);$("mRows").textContent=data.rows;$("mIssues").textContent=data.quality.null_cells+data.quality.duplicate_rows;notice("sourceNotice","Profile complete: "+data.rows+" rows and "+data.columns.length+" columns.","ok");setTab("quality")}catch(e){notice("sourceNotice",e.message)}};
+$("runBtn").onclick=async()=>{try{clearNotice("runNotice");$("runBtn").disabled=true;$("runBtn").textContent="Running pipeline…";const fd=createUploadForm();fd.append("operations",JSON.stringify(getOperations()));fd.append("drop_duplicates",String($("dedupe").checked));fd.append("missing_strategy",$("missing").value);fd.append("filter_column",$("filterColumn").value.trim());fd.append("filter_contains",$("filterContains").value);const r=await fetch("/api/run",{method:"POST",body:fd});const data=await r.json();if(!r.ok)throw Error(data.detail||"Pipeline failed.");latestResult=data;lastCSV=data.output_csv;$("downloadBtn").disabled=false;showPreview(data.preview,Object.keys(data.preview[0]||{}).length?Object.keys(data.preview[0]):[]);showQuality(data.quality_after);$("mRows").textContent=data.rows_out;$("mIssues").textContent=data.quality_after.null_cells+data.quality_after.duplicate_rows;$("mDuration").textContent=data.duration_ms+" ms";$("runBadge").textContent="Run #"+data.run_id+" · "+data.status;$("details").className="";$("details").innerHTML='<div class="results-top"><div class="badges"><span class="badge good">✓ Completed</span><span class="badge">'+data.rows_in+' input rows</span><span class="badge">'+data.rows_out+' output rows</span><span class="badge">'+data.columns_out+' columns</span></div></div><p class="sub">Applied operations</p>'+ (data.transformations.length?data.transformations.map(x=>'<div class="qrow"><span>✓ '+esc(x)+'</span></div>').join(""):'<p class="sub">No transformations selected.</p>')+'<p class="hint">Execution time: '+data.duration_ms+' ms · Run ID: '+data.run_id+'</p>';notice("runNotice","Pipeline completed successfully. Output is ready to preview or download.","ok");await refreshHistory();setTab("preview")}catch(e){notice("runNotice",e.message)}finally{$("runBtn").disabled=false;$("runBtn").textContent="▶ Run pipeline"}};
+$("downloadBtn").onclick=()=>{if(!lastCSV)return;const blob=new Blob([lastCSV],{type:"text/csv;charset=utf-8"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download=(latestResult?.filename||"flowforge-output.csv").replace(/\.csv$/i,"")+"_cleaned.csv";a.click();URL.revokeObjectURL(url)};
+$("aiBtn").onclick=async()=>{try{clearNotice("sourceNotice");if(!currentFile&&!demoMode)throw Error("Choose a CSV or load demo data, then click Profile data before asking AI.");let prof;if(demoMode){prof={columns:demo.columns,preview:demo.rows,quality:demo.quality}}else{const fd=new FormData();fd.append("file",currentFile);const pr=await fetch("/api/profile",{method:"POST",body:fd});prof=await pr.json();if(!pr.ok)throw Error(prof.detail||"Profile the CSV first.")}const r=await fetch("/api/ai/suggest",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({filename:currentFile?.name||"sales_demo.csv",columns:prof.columns,sample_rows:prof.preview||prof.rows||[],quality_summary:prof.quality||{},goal:$("goal").value})});const data=await r.json();if(!r.ok)throw Error(data.detail||"AI suggestions unavailable.");$("aiOut").style.display="block";$("aiOut").textContent=(data.summary||"Suggested plan")+"\n\nOperations: "+(data.operations||[]).join(", ")+"\nMissing values: "+data.missing_strategy+"\nWarnings: "+(data.warnings||[]).join("; ");document.querySelectorAll('.checks input[type="checkbox"][value]').forEach(c=>c.checked=(data.operations||[]).includes(c.value));$("missing").value=data.missing_strategy||"keep";notice("sourceNotice","AI suggestion received. Review the proposed steps, then run the pipeline.","ok")}catch(e){notice("sourceNotice",e.message)}};
+refreshHistory();
+</script></body></html>
